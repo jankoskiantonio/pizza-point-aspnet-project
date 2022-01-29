@@ -30,6 +30,11 @@ namespace PizzaPointProject
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseCookiePolicy(new CookiePolicyOptions()
+            {
+                MinimumSameSitePolicy = SameSiteMode.Lax
+            });
+
             app.UseStaticFiles();
 
             app.UseSession();
@@ -92,6 +97,12 @@ namespace PizzaPointProject
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 options.SlidingExpiration = true;
+            });
+
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
             });
 
             services.AddDefaultIdentity<IdentityUser>()
