@@ -38,11 +38,11 @@ namespace PizzaPointProject.Data
 
             var user = new IdentityUser()
             {
-                UserName = "admin",
+                UserName = "admin@default.com",
                 Email = "admin@default.com"
             };
              
-            string adminPassword = "Password123";
+            string adminPassword = "password";
             var userResult =  _userManager.CreateAsync(user, adminPassword).Result;
 
             if (userResult.Succeeded)
@@ -56,7 +56,7 @@ namespace PizzaPointProject.Data
         {
             var cat1 = new Categories { Name = "Standard", Description = "The Bakery's Standard pizzas all year around." };
             var cat2 = new Categories { Name = "Spcialities", Description = "The Bakery's Speciality pizzas only for a limited time." };
-            var cat3 = new Categories { Name = "News", Description = "The Bakery's New pizzas on the menu." };
+            var cat3 = new Categories { Name = "New", Description = "The Bakery's New pizzas on the menu." };
 
             var cats = new List<Categories>()
             {
@@ -85,7 +85,7 @@ namespace PizzaPointProject.Data
             var user4 = new IdentityUser { UserName = "user4@gmail.com", Email = "user4@gmail.com" };
             var user5 = new IdentityUser { UserName = "user5@gmail.com", Email = "user5@gmail.com" };
 
-            string userPassword = "Password123";
+            string userPassword = "password";
 
             var users = new List<IdentityUser>()
             {

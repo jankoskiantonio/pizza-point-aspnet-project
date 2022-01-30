@@ -7,6 +7,7 @@ using PizzaPointProject.Data;
 
 namespace PizzaPointProject.Controllers
 {
+    //Require Admin role
     [Authorize(Roles = "Admin")]
     public class PizzaIngredientsController : Controller
     {

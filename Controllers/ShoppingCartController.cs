@@ -11,7 +11,7 @@ namespace OnlinePizzaWebApplication.Controllers
         private readonly IPizzaRepository _pizzaRepository;
         private readonly ApplicationDbContext _context;
         private readonly ShoppingCart _shoppingCart;
-
+        
         public ShoppingCartController(IPizzaRepository pizzaRepository,
             ShoppingCart shoppingCart, ApplicationDbContext context)
         {

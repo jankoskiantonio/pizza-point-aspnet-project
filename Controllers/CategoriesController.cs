@@ -7,6 +7,7 @@ using PizzaPointProject.Data;
 
 namespace PizzaPointProject.Controllers
 {
+    //Require Admin role
     [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
@@ -50,6 +51,7 @@ namespace PizzaPointProject.Controllers
         }
 
         [HttpPost]
+        //Ensure Post request comes from form submitted from view
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] Categories categories)
         {
