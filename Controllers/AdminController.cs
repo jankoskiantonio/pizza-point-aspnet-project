@@ -5,6 +5,7 @@ using PizzaPointProject.Data;
 
 namespace PizzaPointProject.Controllers
 {
+    //Require Admin role
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
@@ -22,12 +23,13 @@ namespace PizzaPointProject.Controllers
             return View();
         }
 
+        //Drop Database
         public IActionResult ClearDatabaseAsync()
         {
             _adminRepo.ClearDatabase();
             return RedirectToAction("Index", "Pizzas", null);
         }
-
+        //Database Seeding
         public IActionResult SeedDatabaseAsync()
         {
             _adminRepo.ClearDatabase();

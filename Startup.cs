@@ -29,7 +29,7 @@ namespace PizzaPointProject
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            //Required for google login without https protocol
             app.UseCookiePolicy(new CookiePolicyOptions()
             {
                 MinimumSameSitePolicy = SameSiteMode.Lax
@@ -39,13 +39,11 @@ namespace PizzaPointProject
 
             app.UseSession();
 
-            app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            //Map controllers
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
@@ -56,22 +54,22 @@ namespace PizzaPointProject
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Database configuration
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             services.AddDatabaseDeveloperPageExceptionFilter();
-
+            //Add Repositories
             services.AddTransient<IPizzaRepository, PizzaRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IAdminRepository, AdminRepository>();
-
+            //Required for shopping cart
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShoppingCart.GetCart(sp));
-
             services.AddMemoryCache();
             services.AddSession();
-
+            //Authentication configuration
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -91,26 +89,26 @@ namespace PizzaPointProject
 
                 options.User.RequireUniqueEmail = true;
             });
-
+            //Login cookie configuraiton
             services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 options.SlidingExpiration = true;
             });
-
+            //Google login configuration
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
             });
-
+            //Default identity configuration
             services.AddDefaultIdentity<IdentityUser>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
 
-
+            //Controllers and views
             services.AddControllersWithViews();
         }
     }

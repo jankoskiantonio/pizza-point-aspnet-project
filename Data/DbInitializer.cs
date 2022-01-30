@@ -51,6 +51,7 @@ namespace PizzaPointProject.Data
             }
         }
 
+        //Database Seed Function
         private static void SeedDatabase(ApplicationDbContext _context, RoleManager<IdentityRole> _roleManager, UserManager<IdentityUser> _userManager)
         {
             var cat1 = new Categories { Name = "Standard", Description = "The Bakery's Standard pizzas all year around." };
@@ -234,7 +235,7 @@ namespace PizzaPointProject.Data
 
             _context.SaveChanges();
         }
-
+        //Drop Database Function
         private static void ClearDatabase(ApplicationDbContext _context)
         {
             var pizzaIngredients = _context.PizzaIngredients.ToList();

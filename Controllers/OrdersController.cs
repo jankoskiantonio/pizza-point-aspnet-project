@@ -8,7 +8,7 @@ using PizzaPointProject.Data;
 
 namespace PizzaPointProject.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    //Require Login to access the orders view
     [Authorize]
     public class OrdersController : Controller
     {

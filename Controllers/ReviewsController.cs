@@ -8,6 +8,7 @@ using PizzaPointProject.Data;
 
 namespace PizzaPointProject.Controllers
 {
+    //Require user login
     [Authorize]
     public class ReviewsController : Controller
     {
@@ -19,7 +20,7 @@ namespace PizzaPointProject.Controllers
             _context = context;
             _userManager = userManager;
         }
-
+        //Require Admin Role
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AdminIndex()
         {
