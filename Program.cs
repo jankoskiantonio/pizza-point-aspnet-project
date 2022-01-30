@@ -12,6 +12,7 @@ if (args.Contains("/seed"))
     {
         DbInitializer.Initialize(scope.ServiceProvider.GetService<ApplicationDbContext>(), scope.ServiceProvider);
     }
+    Environment.Exit(0);
 }
 
 await host.RunAsync();
