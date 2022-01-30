@@ -44,6 +44,10 @@ namespace PizzaPointProject.Controllers
 
         private async Task<List<Pizzas>> GetPizzaSearchList(string userInput)
         {
+            if (userInput == null)
+            {
+                return _context.Pizzas.Include(p => p.Category).ToList();
+            }
             userInput = userInput.ToLower().Trim();
 
             var result = _context.Pizzas.Include(p => p.Category)
@@ -250,8 +254,7 @@ namespace PizzaPointProject.Controllers
         }
 
         // POST: Pizzas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,ImageUrl,IsPizzaOfTheWeek,CategoriesId")] Pizzas pizzas)
@@ -285,8 +288,7 @@ namespace PizzaPointProject.Controllers
         }
 
         // POST: Pizzas/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,ImageUrl,IsPizzaOfTheWeek,CategoriesId")] Pizzas pizzas)

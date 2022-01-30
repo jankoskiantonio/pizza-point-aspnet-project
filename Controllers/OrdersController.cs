@@ -135,7 +135,7 @@ namespace PizzaPointProject.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                
 
                 return RedirectToAction("Index");
             }
@@ -158,7 +158,7 @@ namespace PizzaPointProject.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                
 
                 return RedirectToAction("Index");
             }

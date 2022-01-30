@@ -33,7 +33,7 @@ namespace PizzaPointProject.Controllers
         {
             return View();
         }
-
+        //In case of being unable to access a selected page
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

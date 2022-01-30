@@ -49,9 +49,6 @@ namespace PizzaPointProject.Controllers
             return View();
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] Categories categories)
@@ -65,7 +62,7 @@ namespace PizzaPointProject.Controllers
             return View(categories);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Categories/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,9 +79,8 @@ namespace PizzaPointProject.Controllers
             return View(categories);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Categories/Edit
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Categories categories)
